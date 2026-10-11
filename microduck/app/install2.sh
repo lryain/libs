@@ -29,7 +29,8 @@ command -v python3 >/dev/null || die "python3 is required (used as the static-fi
 
 bold "📦 Microduck PWA installer"
 
-tmp="$(mktemp -d)"
+# tmp="$(mktemp -d)"
+tmp=/tmp/microduck_app
 trap "rm -rf ${tmp}" EXIT
 
 say "fetching latest release from github.com/${REPO}…"
@@ -42,7 +43,7 @@ tarball="/tmp/microduck-app.tar.gz"
 
 say "extracting…"
 echo ${tmp}
-tar -xzf "${tarball}" -C "${tmp}"
+#tar -xzf "${tarball}" -C "${tmp}"
 [[ -f "${tmp}/dist/index.html" ]] || die "release tarball missing dist/index.html"
 [[ -f "${tmp}/deploy/microduck-app.service" ]] || die "release tarball missing systemd unit"
 
